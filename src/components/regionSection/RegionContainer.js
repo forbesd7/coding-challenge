@@ -1,5 +1,10 @@
-import React, { Component } from "react";
-import { Button, ButtonContainer } from "../../styledComponents";
+import React, { Component, Fragment } from "react";
+import {
+  Title,
+  SubTitle,
+  Button,
+  ButtonContainer
+} from "../../styledComponents";
 class RegionContainer extends Component {
   constructor(props) {
     super(props);
@@ -7,12 +12,16 @@ class RegionContainer extends Component {
   }
   render() {
     return (
-      <ButtonContainer>
-        <Button>South East Asia</Button>
-        <Button>Japan</Button>
-        <Button>Taiwan</Button>
-        <Button>Hong Kong</Button>
-      </ButtonContainer>
+      <Fragment>
+        <Title>Results of voting for each region</Title>
+        <SubTitle>Select your region to browse players.</SubTitle>
+        <ButtonContainer>
+          <Button>South East Asia</Button>
+          <Button>Japan</Button>
+          <Button>Taiwan</Button>
+          <Button>Hong Kong</Button>
+        </ButtonContainer>
+      </Fragment>
     );
   }
 }
