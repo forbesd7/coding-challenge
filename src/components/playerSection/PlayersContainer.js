@@ -9,54 +9,13 @@ class PlayersContainer extends Component {
     this.state = {};
   }
 
-  renderSEAPlayers = () => {
+  renderPlayersFromRegion = regionName => {
     return playerData
-      .filter(player => player.teams === "sea")
+      .filter(player => player.teams === regionName)
       .map((player, index) => {
         return (
           <Player
-            playerName={player.nickname}
-            likeCount={player.likeCount}
-            avatarUrl={player.avatarUrl}
-            message={player.message}
-          />
-        );
-      });
-  };
-  renderJapanPlayers = () => {
-    return playerData
-      .filter(player => player.teams === "jp")
-      .map((player, index) => {
-        return (
-          <Player
-            playerName={player.nickname}
-            likeCount={player.likeCount}
-            avatarUrl={player.avatarUrl}
-            message={player.message}
-          />
-        );
-      });
-  };
-  renderTaiwanPlayers = () => {
-    return playerData
-      .filter(player => player.teams === "tw")
-      .map((player, index) => {
-        return (
-          <Player
-            playerName={player.nickname}
-            likeCount={player.likeCount}
-            avatarUrl={player.avatarUrl}
-            message={player.message}
-          />
-        );
-      });
-  };
-  renderHKPlayers = () => {
-    return playerData
-      .filter(player => player.teams === "hk")
-      .map((player, index) => {
-        return (
-          <Player
+            key={index}
             playerName={player.nickname}
             likeCount={player.likeCount}
             avatarUrl={player.avatarUrl}
@@ -68,13 +27,13 @@ class PlayersContainer extends Component {
   renderPlayers = () => {
     switch (this.props.selectedRegion) {
       case "South East Asia":
-        return this.renderSEAPlayers();
+        return this.renderPlayersFromRegion("sea");
       case "Japan":
-        return this.renderJapanPlayers();
+        return this.renderPlayersFromRegion("jp");
       case "Taiwan":
-        return this.renderTaiwanPlayers();
+        return this.renderPlayersFromRegion("tw");
       case "Hong Kong":
-        return this.renderHKPlayers();
+        return this.renderPlayersFromRegion("hk");
       default:
         return "Players not found";
     }
