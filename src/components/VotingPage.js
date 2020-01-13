@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { MainContainer, Title, SubTitle } from "../styledComponents";
+import UserStates from "./userStateSection/UserStates";
 
 class VotingPage extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class VotingPage extends Component {
   render() {
     return (
       <MainContainer>
+        <UserStates />
         <Title>Results of voting for each region</Title>
         <SubTitle>Select your region to browse players.</SubTitle>
         <SubTitle>
