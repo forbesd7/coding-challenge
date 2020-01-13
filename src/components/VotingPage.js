@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MainContainer } from "../styledComponents";
+import { MainContainer, Title, SubTitle } from "../styledComponents";
 
 class VotingPage extends Component {
   constructor(props) {
@@ -7,7 +7,15 @@ class VotingPage extends Component {
     this.state = {};
   }
   render() {
-    return <MainContainer></MainContainer>;
+    return (
+      <MainContainer>
+        <Title>Results of voting for each region</Title>
+        <SubTitle>Select your region to browse players.</SubTitle>
+        <SubTitle>
+          The top 3 vote earners in each region make up that region's team.
+        </SubTitle>
+      </MainContainer>
+    );
   }
 }
 
