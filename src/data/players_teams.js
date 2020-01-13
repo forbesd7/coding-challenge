@@ -1,4 +1,4 @@
-export const playersMock = [
+export const playerData = [
   {
     teams: "tw",
     participantId: "elNYeQKSy8",
