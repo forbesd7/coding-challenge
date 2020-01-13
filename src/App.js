@@ -1,7 +1,12 @@
 import React from "react";
+import { Button } from "./styledComponents";
 
 function App() {
-  return <div>cleanup</div>;
+  return (
+    <div>
+      <Button>Test Button</Button>
+    </div>
+  );
 }
 
 export default App;
