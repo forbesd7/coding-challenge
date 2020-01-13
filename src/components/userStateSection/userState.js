@@ -7,7 +7,7 @@ const UserState = props => {
       <Button
         selected
         onClick={() => {
-          props.updateSelectedUserState(props.userState);
+          props.updateSelectedState(props.userState);
         }}
       >
         {props.userState}
@@ -19,7 +19,7 @@ const UserState = props => {
     return (
       <Button
         onClick={() => {
-          props.updateSelectedUserState(props.userState);
+          props.updateSelectedState(props.userState);
         }}
       >
         {props.userState}

@@ -1,28 +1,43 @@
 import React, { Component } from "react";
-import { MainContainer, Title, SubTitle } from "../styledComponents";
+import { MainContainer, SubTitle } from "../styledComponents";
 import UserStates from "./userStateSection/UserStates";
 import RegionContainer from "./regionSection/RegionContainer";
 
 const USERSTATES = ["Logged In", "Admin", "Logged out"];
+const REGIONS = ["South East Asia", "Japan", "Taiwan", "Hong Kong"];
 
 class VotingPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { selectedUserState: USERSTATES[0] };
+    this.state = {
+      selectedState: USERSTATES[0],
+      selectedRegion: REGIONS[0]
+    };
   }
 
-  updateSelectedUserState = selectedUserState => {
-    this.setState({ selectedUserState: selectedUserState });
+  updateSelectedState = selectedState => {
+    this.setState({
+      selectedState
+    });
+  };
+
+  updateSelectedRegion = selectedRegion => {
+    this.setState({
+      selectedRegion: selectedRegion
+    });
   };
 
   render() {
     return (
       <MainContainer>
         <UserStates
-          selectedUserState={this.state.selectedUserState}
-          updateSelectedUserState={this.updateSelectedUserState}
+          selectedUserState={this.state.selectedState}
+          updateSelectedState={this.updateSelectedState}
         />
-        <RegionContainer />
+        <RegionContainer
+          selectedRegion={this.state.selectedRegion}
+          updateSelectedRegion={this.updateSelectedRegion}
+        />
         <SubTitle>
           The top 3 vote earners in each region make up that region's team.
         </SubTitle>

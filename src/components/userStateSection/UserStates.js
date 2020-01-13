@@ -23,7 +23,7 @@ class UserStates extends Component {
               return (
                 <UserState
                   selected="true"
-                  updateSelectedUserState={this.props.updateSelectedUserState}
+                  updateSelectedState={this.props.updateSelectedState}
                   key={index}
                   userState={userState}
                 />
@@ -31,7 +31,7 @@ class UserStates extends Component {
             }
             return (
               <UserState
-                updateSelectedUserState={this.props.updateSelectedUserState}
+                updateSelectedState={this.props.updateSelectedState}
                 key={index}
                 userState={userState}
               />
