@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { SubTitle, ButtonContainer } from "../../styledComponents";
+import { SubTitle, ButtonContainer, Button } from "../../styledComponents";
 import UserState from "./UserState";
 const USERSTATES = ["Logged In", "Admin", "Logged out"];
 
@@ -9,9 +9,17 @@ class UserStates extends Component {
     this.state = { selectedUserState: USERSTATES[0] };
   }
 
-  // updateSelectedUserState = selectedUserState => {
-  //   this.setState({ selectedUserState: selectedUserState });
-  // };
+  renderAdminButton = () => {
+    if (this.props.selectedState === "Admin") {
+      return (
+        <ButtonContainer>
+          <Button onClick={this.props.toggleVoting}>
+            {this.props.votingClosed ? "Open Voting" : "Close Voting"}
+          </Button>
+        </ButtonContainer>
+      );
+    } else return;
+  };
 
   render() {
     return (
@@ -19,7 +27,7 @@ class UserStates extends Component {
         <SubTitle>Select your user state.</SubTitle>
         <ButtonContainer>
           {USERSTATES.map((userState, index) => {
-            if (this.props.selectedUserState === userState) {
+            if (this.props.selectedState === userState) {
               return (
                 <UserState
                   selected="true"
@@ -38,6 +46,7 @@ class UserStates extends Component {
             );
           })}
         </ButtonContainer>
+        {this.renderAdminButton()}
       </Fragment>
     );
   }

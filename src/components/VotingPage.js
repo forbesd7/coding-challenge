@@ -12,9 +12,14 @@ class VotingPage extends Component {
     super(props);
     this.state = {
       selectedState: USERSTATES[0],
-      selectedRegion: REGIONS[0]
+      selectedRegion: REGIONS[0],
+      votingClosed: false
     };
   }
+
+  toggleVoting = () => {
+    this.setState({ votingClosed: !this.state.votingClosed });
+  };
 
   updateSelectedState = selectedState => {
     this.setState({
@@ -32,8 +37,10 @@ class VotingPage extends Component {
     return (
       <MainContainer>
         <UserStates
-          selectedUserState={this.state.selectedState}
+          selectedState={this.state.selectedState}
           updateSelectedState={this.updateSelectedState}
+          toggleVoting={this.toggleVoting}
+          votingClosed={this.state.votingClosed}
         />
         <RegionContainer
           selectedRegion={this.state.selectedRegion}
