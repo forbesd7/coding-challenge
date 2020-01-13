@@ -1,11 +1,10 @@
-import React from "react";
-import { Button } from "./styledComponents";
-
+import React, { Fragment } from "react";
+import VotingPage from "./components/VotingPage";
 function App() {
   return (
-    <div>
-      <Button>Test Button</Button>
-    </div>
+    <Fragment>
+      <VotingPage />
+    </Fragment>
   );
 }
 

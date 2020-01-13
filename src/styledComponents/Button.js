@@ -11,4 +11,3 @@ const Button = styled.div`
 `;
 
 export default Button;
-//rgb(35, 41, 47)
