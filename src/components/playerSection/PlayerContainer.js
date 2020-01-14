@@ -12,6 +12,8 @@ class PlayersContainer extends Component {
 
   toggleSelectedPlayer = selectedPlayer => {
     const curPlayers = this.state.selectedPlayers;
+
+    //if player was selected, remove them from selected players
     if (this.state.selectedPlayers.includes(selectedPlayer)) {
       const playerIndex = this.state.selectedPlayers.indexOf(selectedPlayer);
       curPlayers.splice(playerIndex, 1);
@@ -30,6 +32,8 @@ class PlayersContainer extends Component {
       .map((player, index) => {
         return (
           <Player
+            selectedState={this.props.selectedState}
+            votingClosed={this.props.votingClosed}
             toggleSelectedPlayer={this.toggleSelectedPlayer}
             selectedPlayers={this.state.selectedPlayers}
             key={index}

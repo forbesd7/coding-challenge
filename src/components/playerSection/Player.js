@@ -50,8 +50,10 @@ const Region = props => {
 
   const renderView = () => {
     if (
-      props.selectedPlayers.length === 3 &&
-      !props.selectedPlayers.includes(props.playerName)
+      (props.selectedPlayers.length === 3 &&
+        !props.selectedPlayers.includes(props.playerName)) ||
+      props.votingClosed ||
+      props.selectedState === "Logged out"
     ) {
       return renderNonHoverablePlayers();
     } else if (props.selectedPlayers.includes(props.playerName)) {

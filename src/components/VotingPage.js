@@ -49,7 +49,11 @@ class VotingPage extends Component {
         <SubTitle>
           The top 3 vote earners in each region make up that region's team.
         </SubTitle>
-        <PlayerContainer selectedRegion={this.state.selectedRegion} />
+        <PlayerContainer
+          selectedState={this.state.selectedState}
+          votingClosed={this.state.votingClosed}
+          selectedRegion={this.state.selectedRegion}
+        />
       </MainContainer>
     );
   }
