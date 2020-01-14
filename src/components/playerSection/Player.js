@@ -1,6 +1,5 @@
-import React from "react";
+import React, { Fragment } from "react";
 import {
-  Button,
   SinglePlayerContainer,
   Avatar,
   PlayerDescription,
@@ -8,46 +7,42 @@ import {
 } from "../../styledComponents";
 
 const Region = props => {
-  const renderSelectedButton = () => {
+  const renderSelectedUser = () => {
     return (
-      <Button
-        selected
-        onClick={() => {
-          props.updateSelectedRegion(props.regionName);
-        }}
-      >
-        {props.regionName}
-      </Button>
+      <SinglePlayerContainer selected>
+        <Avatar
+          selected
+          onClick={() => props.toggleSelectedPlayer(props.playerName)}
+          src={props.avatarUrl}
+        />
+        <PlayerName>{props.playerName}</PlayerName>
+        <PlayerDescription>{props.message}</PlayerDescription>
+      </SinglePlayerContainer>
     );
   };
 
-  const renderButton = () => {
+  const renderUser = () => {
     return (
-      <Button
-        onClick={() => {
-          props.updateSelectedRegion(props.regionName);
-        }}
-      >
-        {props.regionName}
-      </Button>
+      <SinglePlayerContainer>
+        <Avatar
+          onClick={() => props.toggleSelectedPlayer(props.playerName)}
+          src={props.avatarUrl}
+        />
+        <PlayerName>{props.playerName}</PlayerName>
+        <PlayerDescription>{props.message}</PlayerDescription>
+      </SinglePlayerContainer>
     );
   };
 
   const renderView = () => {
-    if (props.selected) {
-      return renderSelectedButton();
+    if (props.selectedPlayers.includes(props.playerName)) {
+      return renderSelectedUser();
     } else {
-      return renderButton();
+      return renderUser();
     }
   };
 
-  return (
-    <SinglePlayerContainer>
-      <Avatar src={props.avatarUrl} />
-      <PlayerName>{props.playerName}</PlayerName>
-      <PlayerDescription>{props.message}</PlayerDescription>
-    </SinglePlayerContainer>
-  );
+  return <Fragment>{renderView()}</Fragment>;
 };
 
 export default Region;

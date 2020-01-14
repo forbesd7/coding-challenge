@@ -7,15 +7,31 @@ import { AllPlayersContainer } from "../../styledComponents";
 class PlayersContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { selectedPlayers: [] };
   }
 
+  toggleSelectedPlayer = selectedPlayer => {
+    const curPlayers = this.state.selectedPlayers;
+    if (this.state.selectedPlayers.includes(selectedPlayer)) {
+      const playerIndex = this.state.selectedPlayers.indexOf(selectedPlayer);
+      curPlayers.splice(playerIndex, 1);
+      this.setState({ selectedPlayers: curPlayers });
+      return;
+    }
+    if (this.state.selectedPlayers.length === 3) return;
+    else {
+      curPlayers.push(selectedPlayer);
+      this.setState({ selectedPlayers: curPlayers });
+    }
+  };
   renderPlayersFromRegion = regionName => {
     return playerData
       .filter(player => player.teams === regionName)
       .map((player, index) => {
         return (
           <Player
+            toggleSelectedPlayer={this.toggleSelectedPlayer}
+            selectedPlayers={this.state.selectedPlayers}
             key={index}
             playerName={player.nickname}
             likeCount={player.likeCount}

@@ -7,7 +7,6 @@ const MainContainer = styled.div`
   flex-direction: column;
   text-align: center;
   align-items: center;
-  overflow-y: scroll;
 `;
 
 export default MainContainer;
