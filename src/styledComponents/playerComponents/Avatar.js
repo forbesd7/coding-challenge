@@ -8,7 +8,9 @@ const Avatar = styled.img`
 
   &:hover {
     border: ${props => {
-      if (props.selected) {
+      if (props.noHover) {
+        return "7px grey solid";
+      } else if (props.selected) {
         return "7px orange solid";
       } else {
         //here can check if length of selected people is 3, if so then keep hover to same color

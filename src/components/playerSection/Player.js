@@ -7,7 +7,21 @@ import {
 } from "../../styledComponents";
 
 const Region = props => {
-  const renderSelectedUser = () => {
+  const renderNonHoverablePlayers = () => {
+    return (
+      <SinglePlayerContainer selected>
+        <Avatar
+          noHover
+          onClick={() => props.toggleSelectedPlayer(props.playerName)}
+          src={props.avatarUrl}
+        />
+        <PlayerName>{props.playerName}</PlayerName>
+        <PlayerDescription>{props.message}</PlayerDescription>
+      </SinglePlayerContainer>
+    );
+  };
+
+  const renderSelectedPlayer = () => {
     return (
       <SinglePlayerContainer selected>
         <Avatar
@@ -21,7 +35,7 @@ const Region = props => {
     );
   };
 
-  const renderUser = () => {
+  const renderPlayer = () => {
     return (
       <SinglePlayerContainer>
         <Avatar
@@ -35,10 +49,15 @@ const Region = props => {
   };
 
   const renderView = () => {
-    if (props.selectedPlayers.includes(props.playerName)) {
-      return renderSelectedUser();
+    if (
+      props.selectedPlayers.length === 3 &&
+      !props.selectedPlayers.includes(props.playerName)
+    ) {
+      return renderNonHoverablePlayers();
+    } else if (props.selectedPlayers.includes(props.playerName)) {
+      return renderSelectedPlayer();
     } else {
-      return renderUser();
+      return renderPlayer();
     }
   };
 
