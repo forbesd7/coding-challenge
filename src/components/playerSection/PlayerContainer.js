@@ -28,17 +28,19 @@ class PlayersContainer extends Component {
     });
     this.setState({ jpVotes, seaVotes, hkVotes, twVotes });
   };
-  isCorrectVotingRegion = votingRegion => {
+
+  isCorrectVotingRegion = selectedPlayerRegion => {
+    //if user has selected a region, check if current players region is the same
     if (this.state.votingRegion) {
       if (this.state.selectedPlayers.length === 0) {
-        this.setState({ votingRegion });
+        this.setState({ votingRegion: selectedPlayerRegion });
         return true;
       }
-      if (this.state.votingRegion !== votingRegion) {
+      if (this.state.votingRegion !== selectedPlayerRegion) {
         return false;
       } else return true;
     } else {
-      this.setState({ votingRegion });
+      this.setState({ votingRegion: selectedPlayerRegion });
       return true;
     }
   };
@@ -74,6 +76,7 @@ class PlayersContainer extends Component {
             toggleSelectedPlayer={this.toggleSelectedPlayer}
             selectedPlayers={this.state.selectedPlayers}
             key={index}
+            votes={player.likeCount}
             region={player.teams}
             playerName={player.nickname}
             likeCount={player.likeCount}

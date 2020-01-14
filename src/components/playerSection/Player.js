@@ -56,6 +56,12 @@ const Region = props => {
 
   const renderView = () => {
     //TODO: not really happy with this solution, a bit hard to read..would like to refactor
+    //will have one more check to see if the user has submitted their votes,
+    //if so then we render the users with percentages of votes
+    //if the user is logged out or admin, we will also show these percentages
+    //will have to have a submit button, and also disable it for admin/logged out.
+    // then just add a function that increases their like count by 1
+    //add the 'selected' part to the players and that should be MVP done! :)
     if (
       (props.selectedPlayers.length === 3 &&
         !props.selectedPlayers.includes(props.playerName)) ||
