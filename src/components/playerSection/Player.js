@@ -5,7 +5,7 @@ import {
   PlayerDescription,
   PlayerName
 } from "../../styledComponents";
-
+//TODO: rewrite these functions to only return the changed avatar.
 const Region = props => {
   const renderNonHoverablePlayers = () => {
     return (

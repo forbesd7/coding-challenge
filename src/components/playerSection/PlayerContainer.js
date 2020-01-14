@@ -10,14 +10,33 @@ class PlayersContainer extends Component {
     this.state = { selectedPlayers: [] };
   }
 
+  componentDidMount() {
+    this.getVotesFromAllRegions();
+  }
+
+  getVotesFromAllRegions = () => {
+    let jpVotes = 0;
+    let seaVotes = 0;
+    let hkVotes = 0;
+    let twVotes = 0;
+
+    playerData.forEach(player => {
+      if (player.teams === "jp") jpVotes += player.likeCount;
+      else if (player.teams === "sea") seaVotes += player.likeCount;
+      else if (player.teams === "hk") hkVotes += player.likeCount;
+      else if (player.teams === "tw") twVotes += player.likeCount;
+    });
+    this.setState({ jpVotes, seaVotes, hkVotes, twVotes });
+  };
   isCorrectVotingRegion = votingRegion => {
     if (this.state.votingRegion) {
       if (this.state.selectedPlayers.length === 0) {
         this.setState({ votingRegion });
         return true;
       }
-      if (this.state.votingRegion !== votingRegion) return false;
-      else return true;
+      if (this.state.votingRegion !== votingRegion) {
+        return false;
+      } else return true;
     } else {
       this.setState({ votingRegion });
       return true;
@@ -25,7 +44,7 @@ class PlayersContainer extends Component {
   };
 
   toggleSelectedPlayer = (selectedPlayer, selectedPlayerRegion) => {
-    console.log(selectedPlayerRegion);
+    //check if the user can vote in current region
     if (!this.isCorrectVotingRegion(selectedPlayerRegion)) return;
 
     const curPlayers = this.state.selectedPlayers;
