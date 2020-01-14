@@ -1,7 +1,8 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 //import { Title, SubTitle, ButtonContainer } from "../../styledComponents";
 import Player from "./Player";
 import { playerData } from "../../data/players_teams";
+import { AllPlayersContainer } from "../../styledComponents";
 
 class PlayersContainer extends Component {
   constructor(props) {
@@ -39,7 +40,7 @@ class PlayersContainer extends Component {
     }
   };
   render() {
-    return <Fragment>{this.renderPlayers()}</Fragment>;
+    return <AllPlayersContainer>{this.renderPlayers()}</AllPlayersContainer>;
   }
 }
 

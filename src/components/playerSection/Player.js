@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import { Button } from "../../styledComponents";
+import React from "react";
+import { Button, SinglePlayerContainer, Avatar } from "../../styledComponents";
 
 const Region = props => {
   const renderSelectedButton = () => {
@@ -35,7 +35,11 @@ const Region = props => {
     }
   };
 
-  return <Fragment>{props.playerName}</Fragment>;
+  return (
+    <SinglePlayerContainer>
+      <Avatar src={props.avatarUrl} />
+    </SinglePlayerContainer>
+  );
 };
 
 export default Region;
