@@ -5,9 +5,9 @@ const MainContainer = styled.div`
   width: 100vw;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   text-align: center;
   align-items: center;
+  overflow-y: scroll;
 `;
 
 export default MainContainer;

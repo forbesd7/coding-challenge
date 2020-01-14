@@ -1,5 +1,11 @@
 import React from "react";
-import { Button, SinglePlayerContainer, Avatar } from "../../styledComponents";
+import {
+  Button,
+  SinglePlayerContainer,
+  Avatar,
+  PlayerDescription,
+  PlayerName
+} from "../../styledComponents";
 
 const Region = props => {
   const renderSelectedButton = () => {
@@ -38,6 +44,8 @@ const Region = props => {
   return (
     <SinglePlayerContainer>
       <Avatar src={props.avatarUrl} />
+      <PlayerName>{props.playerName}</PlayerName>
+      <PlayerDescription>{props.message}</PlayerDescription>
     </SinglePlayerContainer>
   );
 };

@@ -6,6 +6,8 @@ import ButtonContainer from "./ButtonContainer";
 import AllPlayersContainer from "./playerComponents/AllPlayersContainer";
 import SinglePlayerContainer from "./playerComponents/SinglePlayerContainer";
 import Avatar from "./playerComponents/Avatar";
+import PlayerName from "./playerComponents/PlayerName";
+import PlayerDescription from "./playerComponents/PlayerDescription";
 
 export {
   Button,
@@ -15,5 +17,7 @@ export {
   ButtonContainer,
   AllPlayersContainer,
   SinglePlayerContainer,
-  Avatar
+  Avatar,
+  PlayerName,
+  PlayerDescription
 };
