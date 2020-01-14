@@ -10,10 +10,27 @@ class PlayersContainer extends Component {
     this.state = { selectedPlayers: [] };
   }
 
-  toggleSelectedPlayer = selectedPlayer => {
+  isCorrectVotingRegion = votingRegion => {
+    if (this.state.votingRegion) {
+      if (this.state.selectedPlayers.length === 0) {
+        this.setState({ votingRegion });
+        return true;
+      }
+      if (this.state.votingRegion !== votingRegion) return false;
+      else return true;
+    } else {
+      this.setState({ votingRegion });
+      return true;
+    }
+  };
+
+  toggleSelectedPlayer = (selectedPlayer, selectedPlayerRegion) => {
+    console.log(selectedPlayerRegion);
+    if (!this.isCorrectVotingRegion(selectedPlayerRegion)) return;
+
     const curPlayers = this.state.selectedPlayers;
 
-    //if player was selected, remove them from selected players
+    //if player was already selected, remove them from selected players
     if (this.state.selectedPlayers.includes(selectedPlayer)) {
       const playerIndex = this.state.selectedPlayers.indexOf(selectedPlayer);
       curPlayers.splice(playerIndex, 1);
@@ -24,6 +41,7 @@ class PlayersContainer extends Component {
     else {
       curPlayers.push(selectedPlayer);
       this.setState({ selectedPlayers: curPlayers });
+      return;
     }
   };
   renderPlayersFromRegion = regionName => {
@@ -37,6 +55,7 @@ class PlayersContainer extends Component {
             toggleSelectedPlayer={this.toggleSelectedPlayer}
             selectedPlayers={this.state.selectedPlayers}
             key={index}
+            region={player.teams}
             playerName={player.nickname}
             likeCount={player.likeCount}
             avatarUrl={player.avatarUrl}

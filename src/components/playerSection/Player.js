@@ -12,7 +12,9 @@ const Region = props => {
       <SinglePlayerContainer selected>
         <Avatar
           noHover
-          onClick={() => props.toggleSelectedPlayer(props.playerName)}
+          onClick={() =>
+            props.toggleSelectedPlayer(props.playerName, props.region)
+          }
           src={props.avatarUrl}
         />
         <PlayerName>{props.playerName}</PlayerName>
@@ -26,7 +28,9 @@ const Region = props => {
       <SinglePlayerContainer selected>
         <Avatar
           selected
-          onClick={() => props.toggleSelectedPlayer(props.playerName)}
+          onClick={() =>
+            props.toggleSelectedPlayer(props.playerName, props.region)
+          }
           src={props.avatarUrl}
         />
         <PlayerName>{props.playerName}</PlayerName>
@@ -39,7 +43,9 @@ const Region = props => {
     return (
       <SinglePlayerContainer>
         <Avatar
-          onClick={() => props.toggleSelectedPlayer(props.playerName)}
+          onClick={() =>
+            props.toggleSelectedPlayer(props.playerName, props.region)
+          }
           src={props.avatarUrl}
         />
         <PlayerName>{props.playerName}</PlayerName>
@@ -49,6 +55,7 @@ const Region = props => {
   };
 
   const renderView = () => {
+    //TODO: not really happy with this solution, a bit hard to read..would like to refactor
     if (
       (props.selectedPlayers.length === 3 &&
         !props.selectedPlayers.includes(props.playerName)) ||
