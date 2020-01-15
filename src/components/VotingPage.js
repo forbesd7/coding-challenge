@@ -92,6 +92,7 @@ class VotingPage extends Component {
         </SubTitle>
         {this.renderVotesAndSubmitButton()}
         <PlayerContainer
+          hasVoted={this.state.hasVoted}
           updateSelectedPlayers={this.updateSelectedPlayers}
           updateVotes={this.updateVotes}
           selectedState={this.state.selectedState}

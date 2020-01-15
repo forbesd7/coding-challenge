@@ -6,7 +6,6 @@ import {
   PlayerName,
   Percentage
 } from "../../styledComponents";
-//TODO: rewrite these functions to only return the changed avatar.
 const Region = props => {
   const renderNonHoverablePlayers = () => {
     return (
@@ -30,6 +29,7 @@ const Region = props => {
         <Percentage>
           {((props.playerVotes / props.totalRegionVotes) * 100).toFixed(2)}%
         </Percentage>
+
         <Avatar
           noHover
           onClick={() =>
@@ -85,7 +85,8 @@ const Region = props => {
     if (
       props.votingClosed ||
       props.selectedState === "Logged out" ||
-      props.selectedState === "Admin"
+      props.selectedState === "Admin" ||
+      props.hasVoted
     ) {
       return renderPlayersWithPercentages();
     }

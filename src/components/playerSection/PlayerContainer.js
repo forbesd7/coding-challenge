@@ -39,16 +39,6 @@ class PlayersContainer extends Component {
     } else return true;
   };
 
-  addVotes = selectedPlayerNames => {
-    playerData.forEach(player => {
-      for (let playerName of selectedPlayerNames) {
-        if (playerName === player.nickname) {
-          player.likeCount++;
-        }
-      }
-    });
-  };
-
   toggleSelectedPlayer = (selectedPlayerName, selectedPlayerRegion) => {
     if (!this.isCorrectVotingRegion(selectedPlayerRegion)) return;
 
@@ -97,6 +87,7 @@ class PlayersContainer extends Component {
       .map((player, index) => {
         return (
           <Player
+            hasVoted={this.props.hasVoted}
             votingRegion={this.state.votingRegion}
             selectedState={this.props.selectedState}
             votingClosed={this.props.votingClosed}
