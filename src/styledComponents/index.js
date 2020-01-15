@@ -8,6 +8,7 @@ import SinglePlayerContainer from "./playerComponents/SinglePlayerContainer";
 import Avatar from "./playerComponents/Avatar";
 import PlayerName from "./playerComponents/PlayerName";
 import PlayerDescription from "./playerComponents/PlayerDescription";
+import Percentage from "./playerComponents/Percentage";
 
 export {
   Button,
@@ -19,5 +20,6 @@ export {
   SinglePlayerContainer,
   Avatar,
   PlayerName,
-  PlayerDescription
+  PlayerDescription,
+  Percentage
 };

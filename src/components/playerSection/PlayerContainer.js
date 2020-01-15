@@ -93,7 +93,7 @@ class PlayersContainer extends Component {
             toggleSelectedPlayer={this.toggleSelectedPlayer}
             selectedPlayers={this.state.selectedPlayers}
             key={index}
-            votes={player.likeCount}
+            playerVotes={player.likeCount}
             region={player.teams}
             playerName={player.nickname}
             likeCount={player.likeCount}
