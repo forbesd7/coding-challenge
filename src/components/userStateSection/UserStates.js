@@ -6,7 +6,7 @@ const USERSTATES = ["Logged In", "Admin", "Logged out"];
 class UserStates extends Component {
   constructor(props) {
     super(props);
-    this.state = { selectedUserState: USERSTATES[0] };
+    this.state = { selectedUserState: USERSTATES[0], test: "test" };
   }
 
   renderAdminButton = () => {
