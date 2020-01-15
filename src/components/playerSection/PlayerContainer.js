@@ -64,8 +64,11 @@ class PlayersContainer extends Component {
       this.props.updateVotes("increment");
       return;
     }
-    if (this.state.selectedPlayers.length === 3) return;
-    else {
+    if (this.state.selectedPlayers.length === 3) {
+      return;
+    } else {
+      this.props.updateSelectedPlayers(this.state.selectedPlayers);
+
       curPlayers.push(selectedPlayerName);
       this.setState({ selectedPlayers: curPlayers });
       this.props.updateVotes("decrement");
