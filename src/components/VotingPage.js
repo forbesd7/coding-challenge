@@ -84,6 +84,8 @@ class VotingPage extends Component {
           votingClosed={this.state.votingClosed}
         />
         <RegionContainer
+          selectedState={this.state.selectedState}
+          votingClosed={this.state.votingClosed}
           selectedRegion={this.state.selectedRegion}
           updateSelectedRegion={this.updateSelectedRegion}
         />

@@ -9,6 +9,7 @@ import Avatar from "./playerComponents/Avatar";
 import PlayerName from "./playerComponents/PlayerName";
 import PlayerDescription from "./playerComponents/PlayerDescription";
 import Percentage from "./playerComponents/Percentage";
+import SelectedText from "./playerComponents/SelectedText";
 
 export {
   Button,
@@ -21,5 +22,6 @@ export {
   Avatar,
   PlayerName,
   PlayerDescription,
-  Percentage
+  Percentage,
+  SelectedText
 };

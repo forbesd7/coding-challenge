@@ -7,7 +7,7 @@ const REGIONS = ["South East Asia", "Japan", "Taiwan", "Hong Kong"];
 class RegionContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { titleContent: "" };
   }
 
   renderSelectedButton = (curRegion, index) => {
@@ -30,11 +30,21 @@ class RegionContainer extends Component {
       />
     );
   };
+
+  renderTitle = () => {
+    if (this.props.selectedState === "Logged In" && !this.props.votingClosed) {
+      return "Vote for players to represent your region's team";
+    } else {
+      return "Results of voting for each region";
+    }
+  };
   render() {
     return (
       <Fragment>
-        <Title>Results of voting for each region</Title>
+        <Title>{this.renderTitle()}</Title>
         <SubTitle>Select your region to browse players.</SubTitle>
+        <SubTitle>NOTE: You may only vote for one region.</SubTitle>
+
         <ButtonContainer>
           {REGIONS.map((region, index) => {
             if (region === this.props.selectedRegion) {

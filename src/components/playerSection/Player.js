@@ -4,25 +4,34 @@ import {
   Avatar,
   PlayerDescription,
   PlayerName,
-  Percentage
+  Percentage,
+  SelectedText
 } from "../../styledComponents";
 const Region = props => {
   const renderNonHoverablePlayers = () => {
     return (
       <SinglePlayerContainer selected>
-        <Avatar
-          noHover
-          onClick={() =>
-            props.toggleSelectedPlayer(props.playerName, props.region)
-          }
-          src={props.avatarUrl}
-        />
+        <Avatar noHover src={props.avatarUrl} />
         <PlayerName>{props.playerName}</PlayerName>
         <PlayerDescription>{props.message}</PlayerDescription>
       </SinglePlayerContainer>
     );
   };
 
+  const renderUserSelectedPlayerWithPercentages = () => {
+    return (
+      <SinglePlayerContainer selected>
+        <Percentage selected>
+          {((props.playerVotes / props.totalRegionVotes) * 100).toFixed(2)}%
+        </Percentage>
+
+        <Avatar selected src={props.avatarUrl} />
+        <SelectedText>Your Selection</SelectedText>
+        <PlayerName>{props.playerName}</PlayerName>
+        <PlayerDescription>{props.message}</PlayerDescription>
+      </SinglePlayerContainer>
+    );
+  };
   const renderPlayersWithPercentages = () => {
     return (
       <SinglePlayerContainer selected>
@@ -30,13 +39,7 @@ const Region = props => {
           {((props.playerVotes / props.totalRegionVotes) * 100).toFixed(2)}%
         </Percentage>
 
-        <Avatar
-          noHover
-          onClick={() =>
-            props.toggleSelectedPlayer(props.playerName, props.region)
-          }
-          src={props.avatarUrl}
-        />
+        <Avatar noHover src={props.avatarUrl} />
         <PlayerName>{props.playerName}</PlayerName>
         <PlayerDescription>{props.message}</PlayerDescription>
       </SinglePlayerContainer>
@@ -82,6 +85,13 @@ const Region = props => {
     //will have to have a submit button, and also disable it for admin/logged out.
     // then just add a function that increases their like count by 1
     //add the 'selected' part to the players and that should be MVP done! :)
+
+    if (
+      props.selectedState === "Logged In" &&
+      (props.hasVoted && props.selectedPlayers.includes(props.playerName))
+    ) {
+      return renderUserSelectedPlayerWithPercentages();
+    }
     if (
       props.votingClosed ||
       props.selectedState === "Logged out" ||
