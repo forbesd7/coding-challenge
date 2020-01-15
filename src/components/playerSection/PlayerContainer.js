@@ -65,12 +65,29 @@ class PlayersContainer extends Component {
       return;
     }
   };
+
+  getCorrectRegionVotes = regionName => {
+    switch (regionName) {
+      case "jp":
+        return this.state.jpVotes;
+      case "sea":
+        return this.state.seaVotes;
+      case "hk":
+        return this.state.hkVotes;
+      case "tw":
+        return this.state.twVotes;
+      default:
+        return;
+    }
+  };
   renderPlayersFromRegion = regionName => {
+    const totalRegionVotes = this.getCorrectRegionVotes(regionName);
     return playerData
       .filter(player => player.teams === regionName)
       .map((player, index) => {
         return (
           <Player
+            totalRegionVotes={totalRegionVotes}
             selectedState={this.props.selectedState}
             votingClosed={this.props.votingClosed}
             toggleSelectedPlayer={this.toggleSelectedPlayer}
