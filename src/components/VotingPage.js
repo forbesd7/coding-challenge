@@ -59,7 +59,10 @@ class VotingPage extends Component {
     if (this.state.selectedState === "Logged In") {
       return (
         <Fragment>
-          <SubTitle>Remaining Votes: {this.state.remainingVotes}</SubTitle>
+          <SubTitle>
+            Click on 3 players to place your votes (Remaining Votes:{" "}
+            {this.state.remainingVotes})
+          </SubTitle>
           <SubmitButton
             updateHasVoted={this.updateHasVoted}
             hasVoted={this.state.hasVoted}

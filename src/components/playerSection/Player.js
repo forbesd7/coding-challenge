@@ -40,6 +40,7 @@ const Region = props => {
         </Percentage>
 
         <Avatar noHover src={props.avatarUrl} />
+
         <PlayerName>{props.playerName}</PlayerName>
         <PlayerDescription>{props.message}</PlayerDescription>
       </SinglePlayerContainer>
@@ -56,6 +57,8 @@ const Region = props => {
           }
           src={props.avatarUrl}
         />
+        <SelectedText>Your Selection</SelectedText>
+
         <PlayerName>{props.playerName}</PlayerName>
         <PlayerDescription>{props.message}</PlayerDescription>
       </SinglePlayerContainer>
