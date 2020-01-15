@@ -86,6 +86,8 @@ class PlayersContainer extends Component {
       .filter(player => player.teams === regionName)
       .map((player, index) => {
         return (
+          //This is why context api/redux would have been good to use.
+          // Code started to get a bit hard to read due to passing down so many props.
           <Player
             hasVoted={this.props.hasVoted}
             votingRegion={this.state.votingRegion}
