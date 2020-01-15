@@ -7,7 +7,7 @@ import { AllPlayersContainer } from "../../styledComponents";
 class PlayersContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = { selectedPlayers: [] };
+    this.state = { selectedPlayers: [], votingRegion: "sea" };
   }
 
   componentDidMount() {
@@ -31,19 +31,13 @@ class PlayersContainer extends Component {
 
   isCorrectVotingRegion = selectedPlayerRegion => {
     //if user has selected a region, check if current players region is the same
-    if (this.state.votingRegion) {
-      if (this.state.selectedPlayers.length === 0) {
-        this.setState({ votingRegion: selectedPlayerRegion });
-        return true;
-      }
-      if (this.state.votingRegion !== selectedPlayerRegion) {
-        return false;
-      } else return true;
-    } else {
-      //if user hasn't selected a region yet, set it for the first time
+    if (this.state.selectedPlayers.length === 0) {
       this.setState({ votingRegion: selectedPlayerRegion });
       return true;
     }
+    if (this.state.votingRegion !== selectedPlayerRegion) {
+      return false;
+    } else return true;
   };
 
   toggleSelectedPlayer = (selectedPlayer, selectedPlayerRegion) => {
@@ -89,6 +83,7 @@ class PlayersContainer extends Component {
       .map((player, index) => {
         return (
           <Player
+            votingRegion={this.state.votingRegion}
             selectedState={this.props.selectedState}
             votingClosed={this.props.votingClosed}
             toggleSelectedPlayer={this.toggleSelectedPlayer}

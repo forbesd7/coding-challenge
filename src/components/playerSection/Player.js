@@ -82,7 +82,7 @@ const Region = props => {
     //will have to have a submit button, and also disable it for admin/logged out.
     // then just add a function that increases their like count by 1
     //add the 'selected' part to the players and that should be MVP done! :)
-
+    console.log(props.votingRegion, props.region);
     if (
       props.votingClosed ||
       props.selectedState === "Logged out" ||
@@ -91,8 +91,9 @@ const Region = props => {
       return renderPlayersWithPercentages();
     }
     if (
-      props.selectedPlayers.length === 3 &&
-      !props.selectedPlayers.includes(props.playerName)
+      (props.selectedPlayers.length === 3 &&
+        !props.selectedPlayers.includes(props.playerName)) ||
+      (props.selectedPlayers.length > 0 && props.votingRegion !== props.region)
     ) {
       return renderNonHoverablePlayers();
     } else if (props.selectedPlayers.includes(props.playerName)) {

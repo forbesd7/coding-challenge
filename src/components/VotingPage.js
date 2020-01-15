@@ -45,6 +45,13 @@ class VotingPage extends Component {
     }
   };
 
+  renderVotesDisplay = () => {
+    if (this.state.selectedState === "Logged In") {
+      return <SubTitle>Remaining Votes: {this.state.remainingVotes}</SubTitle>;
+    }
+    return;
+  };
+
   render() {
     return (
       <MainContainer>
@@ -61,7 +68,7 @@ class VotingPage extends Component {
         <SubTitle>
           The top 3 vote earners in each region make up that region's team.
         </SubTitle>
-        <SubTitle>Remaining Votes: {this.state.remainingVotes}</SubTitle>
+        {this.renderVotesDisplay()}
         <PlayerContainer
           updateVotes={this.updateVotes}
           selectedState={this.state.selectedState}
