@@ -24,20 +24,8 @@ const Button = styled.div`
     }
   }};
   &:hover {
-    background-color: ${props => {
-      if (props.greyed) {
-        return "grey";
-      } else {
-        return "rgb(255, 140, 0)";
-      }
-    }};
-    color: ${props => {
-      if (props.greyed) {
-        return "black";
-      } else {
-        return "white";
-      }
-    }};
+    background-color: ${props => (props.greyed ? "grey" : "rgb(255, 140, 0)")};
+    color: ${props => (props.greyed ? "black" : "#fff")};
     cursor: ${props => (props.greyed ? "not-allowed" : "pointer")};
   }
 

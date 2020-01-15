@@ -16,10 +16,14 @@ class VotingPage extends Component {
       selectedRegion: REGIONS[0],
       votingClosed: false,
       remainingVotes: 3,
+      hasVoted: false,
       selectedPlayers: []
     };
   }
 
+  updateHasVoted = () => {
+    this.setState({ hasVoted: true });
+  };
   toggleVoting = () => {
     this.setState({ votingClosed: !this.state.votingClosed });
   };
@@ -57,6 +61,8 @@ class VotingPage extends Component {
         <Fragment>
           <SubTitle>Remaining Votes: {this.state.remainingVotes}</SubTitle>
           <SubmitButton
+            updateHasVoted={this.updateHasVoted}
+            hasVoted={this.state.hasVoted}
             selectedPlayers={this.state.selectedPlayers}
             remainingVotes={this.state.remainingVotes}
           >

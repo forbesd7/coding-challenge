@@ -3,7 +3,7 @@ import { Button } from "../styledComponents";
 
 const SubmitButton = props => {
   const submitVotes = () => {
-    console.log(props.selectedPlayers);
+    props.updateHasVoted();
   };
 
   const renderGreyedOutButton = () => {
@@ -13,11 +13,12 @@ const SubmitButton = props => {
   };
 
   const renderSelectableButton = () => {
-    return <Button>Submit Votes</Button>;
+    return <Button onClick={submitVotes}>Submit Votes</Button>;
   };
 
   const renderView = () => {
-    if (props.remainingVotes > 0) return renderGreyedOutButton();
+    if (props.remainingVotes > 0 || props.hasVoted)
+      return renderGreyedOutButton();
     return renderSelectableButton();
   };
 
