@@ -34,20 +34,31 @@ class PlayersContainer extends Component {
     if (this.state.selectedPlayers.length === 0) {
       this.setState({ votingRegion: selectedPlayerRegion });
       return true;
-    }
-    if (this.state.votingRegion !== selectedPlayerRegion) {
+    } else if (this.state.votingRegion !== selectedPlayerRegion) {
       return false;
     } else return true;
   };
 
-  toggleSelectedPlayer = (selectedPlayer, selectedPlayerRegion) => {
+  addVotes = selectedPlayerNames => {
+    playerData.forEach(player => {
+      for (let playerName of selectedPlayerNames) {
+        if (playerName === player.nickname) {
+          player.likeCount++;
+        }
+      }
+    });
+  };
+
+  toggleSelectedPlayer = (selectedPlayerName, selectedPlayerRegion) => {
     if (!this.isCorrectVotingRegion(selectedPlayerRegion)) return;
 
     const curPlayers = this.state.selectedPlayers;
 
     //if player was already selected, remove them from selected players
-    if (this.state.selectedPlayers.includes(selectedPlayer)) {
-      const playerIndex = this.state.selectedPlayers.indexOf(selectedPlayer);
+    if (this.state.selectedPlayers.includes(selectedPlayerName)) {
+      const playerIndex = this.state.selectedPlayers.indexOf(
+        selectedPlayerName
+      );
       curPlayers.splice(playerIndex, 1);
       this.setState({ selectedPlayers: curPlayers });
       this.props.updateVotes("increment");
@@ -55,7 +66,7 @@ class PlayersContainer extends Component {
     }
     if (this.state.selectedPlayers.length === 3) return;
     else {
-      curPlayers.push(selectedPlayer);
+      curPlayers.push(selectedPlayerName);
       this.setState({ selectedPlayers: curPlayers });
       this.props.updateVotes("decrement");
       return;
