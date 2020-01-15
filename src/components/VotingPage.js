@@ -13,7 +13,8 @@ class VotingPage extends Component {
     this.state = {
       selectedState: USERSTATES[0],
       selectedRegion: REGIONS[0],
-      votingClosed: false
+      votingClosed: false,
+      remainingVotes: 3
     };
   }
 
@@ -33,6 +34,17 @@ class VotingPage extends Component {
     });
   };
 
+  updateVotes = voteAdjustment => {
+    let curVotes = this.state.remainingVotes;
+    if (voteAdjustment === "increment") {
+      curVotes++;
+      this.setState({ remainingVotes: curVotes });
+    } else if (voteAdjustment === "decrement") {
+      curVotes--;
+      this.setState({ remainingVotes: curVotes });
+    }
+  };
+
   render() {
     return (
       <MainContainer>
@@ -49,7 +61,9 @@ class VotingPage extends Component {
         <SubTitle>
           The top 3 vote earners in each region make up that region's team.
         </SubTitle>
+        <SubTitle>Remaining Votes: {this.state.remainingVotes}</SubTitle>
         <PlayerContainer
+          updateVotes={this.updateVotes}
           selectedState={this.state.selectedState}
           votingClosed={this.state.votingClosed}
           selectedRegion={this.state.selectedRegion}

@@ -59,7 +59,7 @@ const Region = props => {
     );
   };
 
-  const renderPlayer = () => {
+  const renderHoverablePlayer = () => {
     return (
       <SinglePlayerContainer>
         <Avatar
@@ -98,7 +98,7 @@ const Region = props => {
     } else if (props.selectedPlayers.includes(props.playerName)) {
       return renderSelectedPlayer();
     } else {
-      return renderPlayer();
+      return renderHoverablePlayer();
     }
   };
 

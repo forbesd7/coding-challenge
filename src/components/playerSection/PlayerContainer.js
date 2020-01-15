@@ -40,13 +40,13 @@ class PlayersContainer extends Component {
         return false;
       } else return true;
     } else {
+      //if user hasn't selected a region yet, set it for the first time
       this.setState({ votingRegion: selectedPlayerRegion });
       return true;
     }
   };
 
   toggleSelectedPlayer = (selectedPlayer, selectedPlayerRegion) => {
-    //check if the user can vote in current region
     if (!this.isCorrectVotingRegion(selectedPlayerRegion)) return;
 
     const curPlayers = this.state.selectedPlayers;
@@ -56,12 +56,14 @@ class PlayersContainer extends Component {
       const playerIndex = this.state.selectedPlayers.indexOf(selectedPlayer);
       curPlayers.splice(playerIndex, 1);
       this.setState({ selectedPlayers: curPlayers });
+      this.props.updateVotes("increment");
       return;
     }
     if (this.state.selectedPlayers.length === 3) return;
     else {
       curPlayers.push(selectedPlayer);
       this.setState({ selectedPlayers: curPlayers });
+      this.props.updateVotes("decrement");
       return;
     }
   };
@@ -87,12 +89,12 @@ class PlayersContainer extends Component {
       .map((player, index) => {
         return (
           <Player
-            totalRegionVotes={totalRegionVotes}
             selectedState={this.props.selectedState}
             votingClosed={this.props.votingClosed}
             toggleSelectedPlayer={this.toggleSelectedPlayer}
             selectedPlayers={this.state.selectedPlayers}
             key={index}
+            totalRegionVotes={totalRegionVotes}
             playerVotes={player.likeCount}
             region={player.teams}
             playerName={player.nickname}
