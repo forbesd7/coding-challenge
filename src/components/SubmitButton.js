@@ -1,14 +1,24 @@
 import React, { Fragment } from "react";
 import { Button } from "../styledComponents";
+import { playerData } from "../data/players_teams";
 
 const SubmitButton = props => {
   const submitVotes = () => {
+    addVotes(props.selectedPlayers);
     props.updateHasVoted();
   };
 
-  const renderGreyedOutButton = () => {
-    console.log(props.remainingVotes);
+  const addVotes = selectedPlayerNames => {
+    playerData.forEach(player => {
+      for (let playerName of selectedPlayerNames) {
+        if (playerName === player.nickname) {
+          player.likeCount++;
+        }
+      }
+    });
+  };
 
+  const renderGreyedOutButton = () => {
     return <Button greyed>Submit Votes</Button>;
   };
 
