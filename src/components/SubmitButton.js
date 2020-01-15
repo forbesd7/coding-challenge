@@ -19,11 +19,19 @@ const SubmitButton = props => {
   };
 
   const renderGreyedOutButton = () => {
-    return <Button greyed>Submit Votes</Button>;
+    return (
+      <Button submit greyed>
+        Submit Votes
+      </Button>
+    );
   };
 
   const renderSelectableButton = () => {
-    return <Button onClick={submitVotes}>Submit Votes</Button>;
+    return (
+      <Button submit onClick={submitVotes}>
+        Submit Votes
+      </Button>
+    );
   };
 
   const renderView = () => {

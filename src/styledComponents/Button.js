@@ -12,7 +12,10 @@ const Button = styled.div`
   }};
   padding: 5px 20px;
   margin-left: 20px;
-  font-size: 12px;
+  margin-bottom: ${props => (props.submit ? "15px" : "0")};
+  margin-top: ${props => (props.submit ? "15px" : "0")};
+
+  font-size: ${props => (props.submit ? "18px" : "12px")};
   border-radius: 5px;
   background-color: ${props => {
     if (props.selected) {
