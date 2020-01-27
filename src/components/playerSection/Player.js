@@ -8,8 +8,8 @@ import {
   SelectedText
 } from "../../styledComponents";
 const Region = props => {
-  const renderAvatar = hoverState => {
-    if (hoverState === "noHover") {
+  const renderAvatar = (hoverState, hasPercentage) => {
+    if (hoverState === "noHover" || hasPercentage) {
       return <Avatar hoverState={hoverState} src={props.avatarUrl} />;
     } else {
       return (
@@ -55,7 +55,7 @@ const Region = props => {
     return (
       <SinglePlayerContainer>
         {renderPercentages(hoverState, hasPercentage)}
-        {renderAvatar(hoverState)}
+        {renderAvatar(hoverState, hasPercentage)}
         {renderSelectedText(hoverState)}
         <PlayerName>{props.playerName}</PlayerName>
         <PlayerDescription>{props.message}</PlayerDescription>
@@ -68,7 +68,7 @@ const Region = props => {
       props.hasVoted &&
       props.selectedPlayers.includes(props.playerName)
     ) {
-      return renderPlayer("selected", "hasPercentage");
+      return renderPlayer("selected", true);
     }
     if (
       props.votingClosed ||
@@ -76,7 +76,7 @@ const Region = props => {
       props.selectedState === "Admin" ||
       props.hasVoted
     ) {
-      return renderPlayer("noHover", "hasPercentage");
+      return renderPlayer("noHover", true);
     }
     if (
       (props.selectedPlayers.length === 3 &&
