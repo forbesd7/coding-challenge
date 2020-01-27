@@ -8,51 +8,13 @@ import {
   SelectedText
 } from "../../styledComponents";
 const Region = props => {
-  const renderUserSelectedPlayerWithPercentages = () => {
-    return (
-      <SinglePlayerContainer selected>
-        <Percentage selected>
-          {((props.playerVotes / props.totalRegionVotes) * 100).toFixed(2)}%
-        </Percentage>
-
-        <Avatar hoverState="selected" src={props.avatarUrl} />
-        <SelectedText>Your Selection</SelectedText>
-        <PlayerName>{props.playerName}</PlayerName>
-        <PlayerDescription>{props.message}</PlayerDescription>
-      </SinglePlayerContainer>
-    );
-  };
-  const renderPlayersWithPercentages = () => {
-    return (
-      <SinglePlayerContainer selected>
-        <Percentage>
-          {((props.playerVotes / props.totalRegionVotes) * 100).toFixed(2)}%
-        </Percentage>
-
-        <Avatar noHover src={props.avatarUrl} />
-
-        <PlayerName>{props.playerName}</PlayerName>
-        <PlayerDescription>{props.message}</PlayerDescription>
-      </SinglePlayerContainer>
-    );
-  };
-
   const renderAvatar = hoverState => {
     if (hoverState === "noHover") {
       return <Avatar hoverState={hoverState} src={props.avatarUrl} />;
-    } else if (hoverState === "selected") {
-      return (
-        <Avatar
-          hoverState="selected"
-          onClick={() =>
-            props.toggleSelectedPlayer(props.playerName, props.region)
-          }
-          src={props.avatarUrl}
-        />
-      );
     } else {
       return (
         <Avatar
+          hoverState={hoverState}
           onClick={() =>
             props.toggleSelectedPlayer(props.playerName, props.region)
           }
@@ -70,9 +32,21 @@ const Region = props => {
     }
   };
 
-  const renderPlayer = hoverState => {
+  const renderPercentages = (hoverState, hasPercentage) => {
+    if (hasPercentage) {
+      return (
+        <Percentage hoverState={hoverState}>
+          {((props.playerVotes / props.totalRegionVotes) * 100).toFixed(2)}%
+        </Percentage>
+      );
+    }
+    return;
+  };
+
+  const renderPlayer = (hoverState, hasPercentage) => {
     return (
       <SinglePlayerContainer>
+        {renderPercentages(hoverState, hasPercentage)}
         {renderAvatar(hoverState)}
         {renderSelectedText(hoverState)}
         <PlayerName>{props.playerName}</PlayerName>
@@ -87,7 +61,7 @@ const Region = props => {
       props.selectedState === "Logged In" &&
       (props.hasVoted && props.selectedPlayers.includes(props.playerName))
     ) {
-      return renderUserSelectedPlayerWithPercentages();
+      return renderPlayer("selected", "hasPercentage");
     }
     if (
       props.votingClosed ||
@@ -95,7 +69,7 @@ const Region = props => {
       props.selectedState === "Admin" ||
       props.hasVoted
     ) {
-      return renderPlayersWithPercentages();
+      return renderPlayer("noHover", "hasPercentage");
     }
     if (
       (props.selectedPlayers.length === 3 &&
