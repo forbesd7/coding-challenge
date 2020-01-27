@@ -25,7 +25,7 @@ const Region = props => {
           {((props.playerVotes / props.totalRegionVotes) * 100).toFixed(2)}%
         </Percentage>
 
-        <Avatar selected src={props.avatarUrl} />
+        <Avatar hoverState="selected" src={props.avatarUrl} />
         <SelectedText>Your Selection</SelectedText>
         <PlayerName>{props.playerName}</PlayerName>
         <PlayerDescription>{props.message}</PlayerDescription>
@@ -51,7 +51,7 @@ const Region = props => {
     return (
       <SinglePlayerContainer selected>
         <Avatar
-          selected
+          hoverState="selected"
           onClick={() =>
             props.toggleSelectedPlayer(props.playerName, props.region)
           }
@@ -80,6 +80,15 @@ const Region = props => {
     );
   };
 
+  const renderPlayer = hoverState => {
+    return (
+      <SinglePlayerContainer selected>
+        <Avatar hoverState={hoverState} src={props.avatarUrl} />
+        <PlayerName>{props.playerName}</PlayerName>
+        <PlayerDescription>{props.message}</PlayerDescription>
+      </SinglePlayerContainer>
+    );
+  };
   const renderView = () => {
     //I think the logic for what player to render can be simplified, would refactor if I had more time
 
@@ -102,7 +111,7 @@ const Region = props => {
         !props.selectedPlayers.includes(props.playerName)) ||
       (props.selectedPlayers.length > 0 && props.votingRegion !== props.region)
     ) {
-      return renderNonHoverablePlayers();
+      return renderPlayer("noHover");
     } else if (props.selectedPlayers.includes(props.playerName)) {
       return renderSelectedPlayer();
     } else {
