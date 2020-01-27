@@ -43,13 +43,13 @@ const Region = props => {
     return;
   };
 
-  const renderFlag = countryName => {
-    return "hi";
-    // 🇯🇵 jp
-    // 🇹🇼 tw
-    // 🇭🇰 hk
-    // 🇵🇭 ph
-  };
+  // const renderFlag = countryName => {
+  //   return "hi";
+  //   //  jp
+  //   //  tw
+  //   //  hk
+  //   // ph
+  // };
 
   const renderPlayer = (hoverState, hasPercentage) => {
     return (
@@ -57,9 +57,7 @@ const Region = props => {
         {renderPercentages(hoverState, hasPercentage)}
         {renderAvatar(hoverState)}
         {renderSelectedText(hoverState)}
-        <PlayerName>
-          {props.playerName} {renderFlag()}
-        </PlayerName>
+        <PlayerName>{props.playerName}</PlayerName>
         <PlayerDescription>{props.message}</PlayerDescription>
       </SinglePlayerContainer>
     );
@@ -67,7 +65,8 @@ const Region = props => {
   const renderView = () => {
     if (
       props.selectedState === "Logged In" &&
-      (props.hasVoted && props.selectedPlayers.includes(props.playerName))
+      props.hasVoted &&
+      props.selectedPlayers.includes(props.playerName)
     ) {
       return renderPlayer("selected", "hasPercentage");
     }

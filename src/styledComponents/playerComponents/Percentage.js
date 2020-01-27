@@ -1,10 +1,6 @@
 import styled from "styled-components";
 
 const Percentage = styled.div.attrs(props => ({
-  // we can define static props
-  type: "password",
-
-  // or we can define dynamic ones
   hoverState: props.hoverState
 }))`
   font-size: 14px;
@@ -12,10 +8,11 @@ const Percentage = styled.div.attrs(props => ({
   background: ${props =>
     props.hoverState === "selected" ? "rgb(255,140,0)" : "#a9a9a9"};
   width: 50px;
-  flex: auto;
+  height: 18px;
   text-align: center;
-  margin-top: 5px;
+  margin-bottom: -12px;
   color: ${props => (props.hoverState === "selected" ? "white" : "black")};
+  z-index: 2;
 
   border-radius: 5px;
 `;
