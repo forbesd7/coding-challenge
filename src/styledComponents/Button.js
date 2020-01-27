@@ -35,6 +35,10 @@ const Button = styled.div`
   @media screen and (max-width: 540px) {
     margin: 7px 0;
   }
+
+  @media screen and (min-width: 800px) {
+    width: 9%;
+  }
 `;
 
 export default Button;
