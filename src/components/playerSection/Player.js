@@ -43,20 +43,28 @@ const Region = props => {
     return;
   };
 
+  const renderFlag = countryName => {
+    return "hi";
+    // 🇯🇵 jp
+    // 🇹🇼 tw
+    // 🇭🇰 hk
+    // 🇵🇭 ph
+  };
+
   const renderPlayer = (hoverState, hasPercentage) => {
     return (
       <SinglePlayerContainer>
         {renderPercentages(hoverState, hasPercentage)}
         {renderAvatar(hoverState)}
         {renderSelectedText(hoverState)}
-        <PlayerName>{props.playerName}</PlayerName>
+        <PlayerName>
+          {props.playerName} {renderFlag()}
+        </PlayerName>
         <PlayerDescription>{props.message}</PlayerDescription>
       </SinglePlayerContainer>
     );
   };
   const renderView = () => {
-    //I think the logic for what player to render can be simplified, would refactor if I had more time
-
     if (
       props.selectedState === "Logged In" &&
       (props.hasVoted && props.selectedPlayers.includes(props.playerName))
