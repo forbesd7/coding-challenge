@@ -15,7 +15,7 @@ const Button = styled.div`
   margin-bottom: ${props => (props.submit ? "15px" : "0")};
   margin-top: ${props => (props.submit ? "15px" : "0")};
 
-  font-size: ${props => (props.submit ? "18px" : "12px")};
+  font-size: ${props => (props.submit ? "18px" : "14px")};
   border-radius: 5px;
   background-color: ${props => {
     if (props.selected) {
@@ -34,6 +34,10 @@ const Button = styled.div`
 
   @media screen and (max-width: 540px) {
     margin: 7px 0;
+  }
+
+  @media screen and (min-width: 800px) {
+    width: 9%;
   }
 `;
 
