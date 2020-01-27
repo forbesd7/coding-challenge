@@ -40,6 +40,7 @@ class PlayersContainer extends Component {
   };
 
   toggleSelectedPlayer = (selectedPlayerName, selectedPlayerRegion) => {
+    console.log("hi");
     if (!this.isCorrectVotingRegion(selectedPlayerRegion)) return;
 
     const curPlayers = this.state.selectedPlayers;

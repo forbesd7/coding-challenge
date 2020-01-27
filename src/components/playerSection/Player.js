@@ -8,16 +8,6 @@ import {
   SelectedText
 } from "../../styledComponents";
 const Region = props => {
-  const renderNonHoverablePlayers = () => {
-    return (
-      <SinglePlayerContainer selected>
-        <Avatar noHover src={props.avatarUrl} />
-        <PlayerName>{props.playerName}</PlayerName>
-        <PlayerDescription>{props.message}</PlayerDescription>
-      </SinglePlayerContainer>
-    );
-  };
-
   const renderUserSelectedPlayerWithPercentages = () => {
     return (
       <SinglePlayerContainer selected>
@@ -47,9 +37,11 @@ const Region = props => {
     );
   };
 
-  const renderSelectedPlayer = () => {
-    return (
-      <SinglePlayerContainer selected>
+  const renderAvatar = hoverState => {
+    if (hoverState === "noHover") {
+      return <Avatar hoverState={hoverState} src={props.avatarUrl} />;
+    } else if (hoverState === "selected") {
+      return (
         <Avatar
           hoverState="selected"
           onClick={() =>
@@ -57,33 +49,32 @@ const Region = props => {
           }
           src={props.avatarUrl}
         />
-        <SelectedText>Your Selection</SelectedText>
-
-        <PlayerName>{props.playerName}</PlayerName>
-        <PlayerDescription>{props.message}</PlayerDescription>
-      </SinglePlayerContainer>
-    );
-  };
-
-  const renderHoverablePlayer = () => {
-    return (
-      <SinglePlayerContainer>
+      );
+    } else {
+      return (
         <Avatar
           onClick={() =>
             props.toggleSelectedPlayer(props.playerName, props.region)
           }
           src={props.avatarUrl}
         />
-        <PlayerName>{props.playerName}</PlayerName>
-        <PlayerDescription>{props.message}</PlayerDescription>
-      </SinglePlayerContainer>
-    );
+      );
+    }
+  };
+
+  const renderSelectedText = hoverState => {
+    if (hoverState === "selected") {
+      return <SelectedText>Your Selection</SelectedText>;
+    } else {
+      return;
+    }
   };
 
   const renderPlayer = hoverState => {
     return (
-      <SinglePlayerContainer selected>
-        <Avatar hoverState={hoverState} src={props.avatarUrl} />
+      <SinglePlayerContainer>
+        {renderAvatar(hoverState)}
+        {renderSelectedText(hoverState)}
         <PlayerName>{props.playerName}</PlayerName>
         <PlayerDescription>{props.message}</PlayerDescription>
       </SinglePlayerContainer>
@@ -113,9 +104,9 @@ const Region = props => {
     ) {
       return renderPlayer("noHover");
     } else if (props.selectedPlayers.includes(props.playerName)) {
-      return renderSelectedPlayer();
+      return renderPlayer("selected");
     } else {
-      return renderHoverablePlayer();
+      return renderPlayer();
     }
   };
 
