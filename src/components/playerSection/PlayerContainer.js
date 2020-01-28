@@ -7,13 +7,20 @@ import { AllPlayersContainer } from "../../styledComponents";
 class PlayersContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = { selectedPlayers: [], votingRegion: "sea" };
+    this.myRef = React.createRef();
+    this.state = {
+      selectedPlayers: [],
+      votingRegion: "sea"
+    };
   }
 
   componentDidMount() {
     this.getVotesFromAllRegions();
   }
 
+  handleScroll = e => {
+    console.log(e.target.scrollTop);
+  };
   getVotesFromAllRegions = () => {
     let jpVotes = 0;
     let seaVotes = 0;
@@ -87,8 +94,6 @@ class PlayersContainer extends Component {
       .filter(player => player.teams === regionName)
       .map((player, index) => {
         return (
-          //This is why context api/redux would have been good to use.
-          // Code started to get a bit hard to read due to passing down so many props.
           <Player
             hasVoted={this.props.hasVoted}
             votingRegion={this.state.votingRegion}
@@ -123,7 +128,14 @@ class PlayersContainer extends Component {
     }
   };
   render() {
-    return <AllPlayersContainer>{this.renderPlayers()}</AllPlayersContainer>;
+    return (
+      <AllPlayersContainer
+        ref={ref => (this.listContainer = ref)}
+        onScroll={this.handleScroll}
+      >
+        {this.renderPlayers()}
+      </AllPlayersContainer>
+    );
   }
 }
 
